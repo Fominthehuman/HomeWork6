@@ -3,69 +3,56 @@ package Task1Pack;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ArrayRealisation<T> extends TypeCollection {
+public class ArrayRealisation<T> {
 
-    ArrayList[] arrayList = new ArrayList[0];
-    //private Object[] arrayList = new Object[0];
+    private Object[] newArrayList = new Object[0]; //массив с данными
 
-    @Override
     public int size() {
-        return arrayList.length;
+        return newArrayList.length;
     }
 
-    @Override
-    public void add(Object element) {
-
+    public void add(T element) { //добавление по индексу
+        Object[] result = (T[]) new Object[newArrayList.length + 1];
+        for (int i = 0; i < newArrayList.length; i++) {
+            result[i] = newArrayList[i];
+        }
+        for (int i = newArrayList.length + 1; i < result.length; i++) {
+            result[i] = newArrayList[i - 1];
+        }
+        result[newArrayList.length] = element;
+        newArrayList = result;
     }
 
-   /* public void add(int index, Object element) { //добавление по индексу
-        //Object[] result = new Object[arrayList.length + 1];
-        ArrayList[] result = new ArrayList[arrayList.length + 1];
+    public void remove(int index) { //удаление по индексу
+        Object[] result = (T[]) new Object[newArrayList.length - 1];
         for (int i = 0; i < index; i++) {
-            result[i] = arrayList[i];
-        }
-        for (int i = index + 1; i < result.length; i++) {
-            result[i] = arrayList[i - 1];
-        }
-        result[index] = element;
-        arrayList = result;
-    }*/
-
-    @Override
-    public void remove(int index) {
-        Object[] result = new Object[arrayList.length];
-        for (int i = 0; i < index; i++) {
-            result[i] = arrayList[i];
+            result[i] = newArrayList[i];
         }
         for (int i = index; i < result.length; i++) {
-            result[i] = arrayList[i + 1];
+            result[i] = newArrayList[i + 1];
         }
-        this.arrayList = (ArrayList[]) result;
+        this.newArrayList = result;
     }
 
-    @Override
-    public void remove(Object element) {
-
+    public void remove(T element) { //удаление последнего элемента массива
+        remove(newArrayList.length - 1);
     }
 
-    @Override
-    public Object get(int index) {
+    public T get(int index) { //получение элемента по индексу
         try {
-            return arrayList[index];
+            return (T) newArrayList[index];
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Нет такого индекса");
         }
         return null;
     }
 
-    @Override
-    public void clear() {
+    public void clear() { //очистка коллекци
         //Arrays.fill(data, null); //замена всех элементов на null
-        arrayList = null; //остается один null
+        newArrayList = null; //остается один null
     }
 
-    @Override
     public void print() { //печать коллекции
-        System.out.println(Arrays.toString(arrayList));
+        System.out.println(Arrays.toString(newArrayList));
     }
 }

@@ -1,2 +1,5 @@
 # Project exclude paths
 /out/
+/.idea
+/HomeWork6.iml
+/src/TestPack
