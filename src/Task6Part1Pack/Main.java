@@ -21,12 +21,9 @@ public class Main {
         linkedList.add("LinkedList 2");
         linkedList.add("LinkedList 3");
         System.out.println("Размер листа-коллекции: " + linkedList.size());
-        //linkedList.printList();
         linkedList.remove(2);
         System.out.println(linkedList.get(2));
         linkedList.clear();
-
-
 
     }
 }

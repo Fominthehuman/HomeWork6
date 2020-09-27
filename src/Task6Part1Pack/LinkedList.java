@@ -102,10 +102,4 @@ public class LinkedList<T> implements MyCollection<T> {
         }
     }
 
-    /*public void printList() {
-        LinkedList list = new LinkedList();
-        for (int i=0; i<size-1; i++){
-            System.out.println(list.get(i));
-        }
-    }*/
 }
